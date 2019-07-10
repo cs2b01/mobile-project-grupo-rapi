@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         // 1. Getting username and password inputs from view
         EditText txtUsername = (EditText) findViewById(R.id.txtUsername);
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
-        String username = txtUsername.getText().toString();
+        final String username = txtUsername.getText().toString();
         String password = txtPassword.getText().toString();
 
         // 2. Creating a message from user input data
@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                         String message = response.getString("message");
                         if(message.equals("Authorized")) {
                             showMessage("Authenticated");
+                            Toast.makeText(LoginActivity.this,"Un gusto volver a verte, "+username,Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getActivity(), ContactsActivity.class);
                             intent.putExtra("user_id", response.getInt("user_id"));
                             intent.putExtra("username", response.getString("username"));
